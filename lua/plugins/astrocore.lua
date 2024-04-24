@@ -1,6 +1,6 @@
 -- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
-local utils = require('utils')
+local utils = require "utils"
 
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
@@ -72,42 +72,41 @@ return {
         ["<Leader>b"] = { desc = "Buffers" },
         -- quick swap buffers
         ["<A-]>"] = {
-          function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-          desc = "Next buffer"
+          function() require("astrocore.buffer").nav(vim.v.count1) end,
+          desc = "Next buffer",
         },
         ["<A-[>"] = {
-          function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-          desc = "Previous buffer"
+          function() require("astrocore.buffer").nav(-vim.v.count1) end,
+          desc = "Previous buffer",
         },
-          -- Quick insert shebangs
+        -- Quick insert shebangs
         ["<leader>#"] = { name = "Shebangs" },
-        ["<leader>#b"] = { "gg^i#!/bin/bash<Esc>``", desc = "bash"},
-        ["<leader>#z"] = { "gg^i#!/bin/zsh<Esc>``", desc = "zsh"},
-        ["<leader>#p"] = { "gg^i#!/bin/python<Esc>``", desc = "system python"},
-        ["<leader>#P"] = { "gg^i#!python<Esc>``", desc = "venv python"},
+        ["<leader>#b"] = { "gg^i#!/bin/bash<Esc>``", desc = "bash" },
+        ["<leader>#z"] = { "gg^i#!/bin/zsh<Esc>``", desc = "zsh" },
+        ["<leader>#p"] = { "gg^i#!/bin/python<Esc>``", desc = "system python" },
+        ["<leader>#P"] = { "gg^i#!python<Esc>``", desc = "venv python" },
         -- Select all
-        ["yA"] = { "gg^yG``", desc = "Copy entire file content"},
-        ["dA"] = { "gg^dG", desc = "Delete entire file content"},
-        ["<leader>W"] = { ":w !sudo tee %", desc = "Force Save with sudo"},
+        ["yA"] = { "gg^yG``", desc = "Copy entire file content" },
+        ["dA"] = { "gg^dG", desc = "Delete entire file content" },
+        ["<leader>W"] = { ":w !sudo tee %", desc = "Force Save with sudo" },
       },
-    v = {
-      ["<leader>c"] = {
-        function()
-          local newfile_path = vim.fn.expand("%:.:h").."/"..utils.buf_vtext()
-          vim.cmd(":e "..newfile_path)
-        end,
-        desc = "Create or open file from selection relative to current buffer"
+      v = {
+        ["<leader>c"] = {
+          function()
+            local newfile_path = vim.fn.expand "%:.:h" .. "/" .. utils.buf_vtext()
+            vim.cmd(":e " .. newfile_path)
+          end,
+          desc = "Create or open file from selection relative to current buffer",
+        },
+        ["A"] = {
+          "<Esc>gg^vG$",
+          desc = "Select All",
+        },
+        ["H"] = {
+          function() local escaped_text = utils.buf_vtext() end,
+          desc = "Replace selected text",
+        },
       },
-      ["A"] = {
-        "<Esc>gg^vG$", desc = "Select All"
-      },
-      ["H"] = {
-        function()
-          local escaped_text = utils.buf_vtext()
-        end,
-        desc = "Replace selected text"
-      }
-    },
       i = {},
       t = {},
     },
