@@ -1,4 +1,4 @@
-vim.filetype.add({
+vim.filetype.add {
   extension = {
     table = "table",
     list = "table",
@@ -6,7 +6,4 @@ vim.filetype.add({
     num_list = "table",
     template = "table",
   },
-  filename = {
-    [".aliasrc"] = "zsh"
-  }
-})
+}

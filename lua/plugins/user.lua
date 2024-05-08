@@ -42,10 +42,6 @@ return {
       return opts
     end,
   },
-
-  -- You can disable default plugins as follows:
-  { "max397574/better-escape.nvim", enabled = false },
-
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
     "L3MON4D3/LuaSnip",
@@ -66,24 +62,24 @@ return {
       local Rule = require "nvim-autopairs.rule"
       local cond = require "nvim-autopairs.conds"
       npairs.add_rules(
-      {
-        Rule("$", "$", { "tex", "latex" })
+        {
+          Rule("$", "$", { "tex", "latex" })
             -- don't add a pair if the next character is %
             :with_pair(cond.not_after_regex "%%")
             -- don't add a pair if  the previous character is xxx
             :with_pair(
               cond.not_before_regex("xxx", 3)
-              )
+            )
             -- don't move right when repeat character
             :with_move(cond.none())
             -- don't delete if the next character is xx
             :with_del(cond.not_after_regex "xx")
             -- disable adding a newline when you press <cr>
             :with_cr(cond.none()),
-          },
+        },
         -- disable for .vim files, but it work for another filetypes
         Rule("a", "a", "-vim")
-        )
+      )
     end,
   },
   {
@@ -93,37 +89,43 @@ return {
     init = function()
       vim.g.gruvbox_material_foreground = "mix"
       vim.g.gruvbox_material_background = "medium"
-    end
+    end,
   },
   {
     "wookayin/semshi",
     ft = "python",
     build = ":UpdateRemotePlugins",
-    init = function()
-      vim.g["semshi#excluded_hl_groups"] = {}
-    end,
+    init = function() vim.g["semshi#excluded_hl_groups"] = {} end,
     config = function()
       local function set_semshi_hl()
-        vim.api.nvim_set_hl(0, "semshiLocal", { ctermfg=209, fg="#80aa9e" } )
-        vim.api.nvim_set_hl(0, "semshiGlobal", { ctermfg=214, fg="#d3869b" } )
-        vim.api.nvim_set_hl(0, "semshiImported", { ctermfg=214, fg="#8bba7f", cterm=bold, gui=bold } )
-        vim.api.nvim_set_hl(0, "semshiParameter", { ctermfg=75,  fg="#fabd2f" } )
-        vim.api.nvim_set_hl(0, "semshiParameterUnused", { ctermfg=117, fg="#d79921", cterm=underline, gui=underline} )
-        vim.api.nvim_set_hl(0, "semshiFree", { ctermfg=218, fg="#a89984"} )
-        vim.api.nvim_set_hl(0, "semshiBuiltin", { ctermfg=207, fg="#f2594b"} )
-        vim.api.nvim_set_hl(0, "semshiAttribute", { ctermfg=49,  fg="#458588"} )
-        vim.api.nvim_set_hl(0, "semshiSelf", { ctermfg=249, fg="#fe8019"} )
-        vim.api.nvim_set_hl(0, "semshiUnresolved", { ctermfg=226, fg="#d65d0e", cterm=underline, gui=underline} )
-        vim.api.nvim_set_hl(0, "semshiSelected", { ctermfg=231, fg="#fbf1c7", ctermbg=161, bg="#4c3432"} )
+        vim.api.nvim_set_hl(0, "semshiLocal", { ctermfg = 209, fg = "#80aa9e" })
+        vim.api.nvim_set_hl(0, "semshiGlobal", { ctermfg = 214, fg = "#d3869b" })
+        vim.api.nvim_set_hl(0, "semshiImported", { ctermfg = 214, fg = "#8bba7f", cterm = "bold", gui = "bold" })
+        vim.api.nvim_set_hl(0, "semshiParameter", { ctermfg = 75, fg = "#fabd2f" })
+        vim.api.nvim_set_hl(
+          0,
+          "semshiParameterUnused",
+          { ctermfg = 117, fg = "#d79921", cterm = "underline", gui = "underline" }
+        )
+        vim.api.nvim_set_hl(0, "semshiFree", { ctermfg = 218, fg = "#a89984" })
+        vim.api.nvim_set_hl(0, "semshiBuiltin", { ctermfg = 207, fg = "#f2594b" })
+        vim.api.nvim_set_hl(0, "semshiAttribute", { ctermfg = 49, fg = "#458588" })
+        vim.api.nvim_set_hl(0, "semshiSelf", { ctermfg = 249, fg = "#fe8019" })
+        vim.api.nvim_set_hl(
+          0,
+          "semshiUnresolved",
+          { ctermfg = 226, fg = "#d65d0e", cterm = "underline", gui = "underline" }
+        )
+        vim.api.nvim_set_hl(0, "semshiSelected", { ctermfg = 231, fg = "#fbf1c7", ctermbg = 161, bg = "#4c3432" })
 
-        vim.api.nvim_set_hl(0, "semshiErrorSign", { ctermfg=231, fg="#fbf1c7", ctermbg=160, bg="#402120"} )
-        vim.api.nvim_set_hl(0, "semshiErrorChar", { ctermfg=231, fg="#fbf1c7", ctermbg=160, bg="#402120"} )
-        vim.cmd([[sign define semshiError text=E> texthl=semshiErrorSign]])
+        vim.api.nvim_set_hl(0, "semshiErrorSign", { ctermfg = 231, fg = "#fbf1c7", ctermbg = 160, bg = "#402120" })
+        vim.api.nvim_set_hl(0, "semshiErrorChar", { ctermfg = 231, fg = "#fbf1c7", ctermbg = 160, bg = "#402120" })
+        vim.cmd [[sign define semshiError text=E> texthl=semshiErrorSign]]
       end
-      vim.api.nvim_create_autocmd('Colorscheme', {
-        pattern = '*',
-        group = vim.api.nvim_create_augroup('semshi_colorscheme', {clear = true}),
-        callback = set_semshi_hl
+      vim.api.nvim_create_autocmd("Colorscheme", {
+        pattern = "*",
+        group = vim.api.nvim_create_augroup("semshi_colorscheme", { clear = true }),
+        callback = set_semshi_hl,
       })
       set_semshi_hl()
     end,
@@ -131,42 +133,22 @@ return {
       n = {
         ["<leader>s"] = { name = "Semshi" },
         ["<leader>se"] = { ":Semshi enable<cr>", desc = "Enable Semshi coloring" },
-      }
-    }
-  },
-  -- {
-  --   "sveltejs/language-tools",
-  --   config = function()
-  --     require('plugins.configs.lspconfig').svelte.setup()
-  --   end,
-  -- },
-  {
-    "pocco81/true-zen.nvim",
-    event = "BufRead",
-    keys = {
-      n = {
-        -- Zen Mode
-        ["<leader>W"] = { name = "Writing Mode"},
-        ["<leader>Wz"] = { ":TZAtaraxis<cr>", desc = "Full Zen"},
-        ["<leader>Wm"] = { ":TZMinimalist<cr>", desc = "Minimalist Mode"},
-        ["<leader>Wn"] = { ":TZNarrow<cr>", desc = "Narrow Mode"},
-        ["<leader>Wf"] = { ":TZFocus<cr>", desc = "Focus current pane"},
-      }
-    }
+      },
+    },
   },
   {
     "icebreaker/gustav.vim",
     ft = "markdown",
     keys = {
       n = {
-        ["<leader>-"] = { ":call gustav#add()<CR>", desc = "Add GFM checkbox to item"},
-        ["<leader>="] = { ":call gustav#toggle()<CR>", desc = "Toggle GFM checkbox status"},
-      }
-    }
+        ["<leader>-"] = { ":call gustav#add()<CR>", desc = "Add GFM checkbox to item" },
+        ["<leader>="] = { ":call gustav#toggle()<CR>", desc = "Toggle GFM checkbox status" },
+      },
+    },
   },
   {
     "mfussenegger/nvim-dap-python",
-    ft = "python"
+    ft = "python",
   },
   {
     "epwalsh/obsidian.nvim",
@@ -183,49 +165,50 @@ return {
       workspaces = {
         {
           name = "13th Age - Stone Thief",
-          path = "~/Ludothèque/TTRPGs/campaigns/13A-Stone-Thief"
+          path = "~/Ludothèque/TTRPGs/campaigns/13A-Stone-Thief",
         },
         {
           name = "OSE - Marches du Nord",
-          path = "~/Ludothèque/TTRPGs/campaigns/OSE-marches-du-nord"
-        }
-      }
-    }
+          path = "~/Ludothèque/TTRPGs/campaigns/OSE-marches-du-nord",
+        },
+      },
+    },
   },
   {
     "folke/zen-mode.nvim",
     lazy = true,
     dependencies = {
-      "folke/twilight.nvim"
+      "folke/twilight.nvim",
     },
     keys = {
-      -- Zen Mode 
+      -- Zen Mode
       { "<leader>z", ":ZenMode<cr>", desc = "Toggle Zen Mode" },
     },
-    opts = {}
+    opts = {},
   },
   {
     "folke/twilight.nvim",
-    opts = {}
-  },
-  {
-    'f3fora/nvim-texlabconfig',
-    config = function()
-      require('texlabconfig').setup(config)
-    end,
-    ft = { 'tex', 'bib' }, -- Lazy-load on filetype
-    build = 'go build'
-    -- build = 'go build -o ~/.bin/' if e.g. ~/.bin/ is in $PATH
-  },  {
-    "stevearc/overseer.nvim",
     opts = {},
     keys = {
-      { "<leader>O", ":OverseerRun<cr>", desc = "Overseer build options"}
-    }
+      n = {
+        ["<leader>T"] = { ":Twilight<CR>", desc = "Toggle Twilight HL" },
+      },
+    },
+  },
+  {
+    "f3fora/nvim-texlabconfig",
+    config = function() require("texlabconfig").setup() end,
+    ft = { "tex", "bib" }, -- Lazy-load on filetype
+    build = "go build",
+    -- build = 'go build -o ~/.bin/' if e.g. ~/.bin/ is in $PATH
   },
   {
     "mustache/vim-mustache-handlebars",
     opts = {},
-    ft = "handlebars"
-  }
+    ft = "handlebars",
+  },
+  {
+    "andrewferrier/wrapping.nvim",
+    config = function() require("wrapping").setup() end,
+  },
 }
