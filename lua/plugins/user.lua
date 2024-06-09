@@ -16,7 +16,20 @@ return {
   },
 
   -- == Examples of Overriding Plugins ==
-
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "jonarrien/telescope-cmdline.nvim",
+    },
+    keys = {
+      { ":", "<cmd>Telescope cmdline<cr>", desc = "Cmdline" },
+    },
+    config = function(_, opts)
+      require("telescope").setup(opts)
+      require("telescope").load_extension "cmdline"
+    end,
+  },
   -- customize alpha options
   {
     "goolord/alpha-nvim",
@@ -210,5 +223,9 @@ return {
   {
     "andrewferrier/wrapping.nvim",
     config = function() require("wrapping").setup() end,
+  },
+  {
+    "Fymyte/rasi.vim",
+    ft = "rasi",
   },
 }
