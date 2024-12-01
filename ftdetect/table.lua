@@ -5,5 +5,6 @@ vim.filetype.add {
     weighted_list = "table",
     num_list = "table",
     template = "table",
+    chance = "table",
   },
 }
