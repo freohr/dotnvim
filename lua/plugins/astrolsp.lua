@@ -57,18 +57,18 @@ return {
         settings = {
           texlab = {
             build = {
-              executable = "tectonic-rpg",
+              executable = "tectonic",
               onSave = true,
-              -- args = {
-              --   "-X",
-              --   "compile",
-              --   "%f",
-              --   "--keep-logs",
-              --   "-Zsearch-path=.",
-              --   "-Zsearch-path=/home/stephen/.config/tectonic/custom_classes",
-              --   "-Zsearch-path=/home/stephen/.config/mdtopdf/rpg-module",
-              --   "-Zsearch-path=/home/stephen/workspace/projects/rpg_module",
-              -- },
+              args = {
+                "-X",
+                "compile",
+                "%f",
+                "--keep-logs",
+                "-Zsearch-path=.",
+                "-Zsearch-path=/home/stephen/.config/tectonic/custom_classes",
+                "-Zsearch-path=/home/stephen/.config/mdtopdf/rpg-module",
+                "-Zsearch-path=/home/stephen/workspace/projects/rpg_module",
+              },
             },
             forwardSearch = {
               executable = "okular",

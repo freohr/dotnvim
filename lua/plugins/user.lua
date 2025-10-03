@@ -59,6 +59,7 @@ return {
       return opts
     end,
   },
+
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
     "L3MON4D3/LuaSnip",
@@ -226,5 +227,9 @@ return {
   {
     "sile-typesetter/vim-sile",
     ft = "sile",
+  },
+  {
+    "stevearc/overseer.nvim",
+    opts = {},
   },
 }
