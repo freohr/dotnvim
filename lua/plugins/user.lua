@@ -1,64 +1,51 @@
 -- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- You can also add or configure plugins by creating files in this `plugins/` folder
+-- PLEASE REMOVE THE EXAMPLES YOU HAVE NO INTEREST IN BEFORE ENABLING THIS FILE
 -- Here are some examples:
 
 ---@type LazySpec
 return {
 
   -- == Examples of Adding Plugins ==
-
   "andweeb/presence.nvim",
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function() require("lsp_signature").setup() end,
   },
-
-  -- {
-  --   "folke/which-key.nvim",
-  --   enabled = false,
-  -- },
   -- == Examples of Overriding Plugins ==
+
+  -- customize dashboard options
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "jonarrien/telescope-cmdline.nvim",
+    "folke/snacks.nvim",
+    opts = {
+      dashboard = {
+        preset = {
+          header = table.concat({
+            " ______           __                   ",
+            "/\\  _  \\         /\\ \\__                ",
+            "\\ \\ \\L\\ \\    ____\\ \\ ,_\\  _ __   ___   ",
+            " \\ \\  __ \\  /',__\\\\ \\ \\/ /\\`'__\\/ __`\\ ",
+            "  \\ \\ \\/\\ \\/\\__, `\\\\ \\ \\_\\ \\ \\//\\ \\L\\ \\",
+            "   \\ \\_\\ \\_\\/\\____/ \\ \\__\\\\ \\_\\\\ \\____/",
+            "    \\/_/\\/_/\\/___/   \\/__/ \\/_/ \\/___/ ",
+            " ",
+            " __  __  __  __                     ",
+            "/\\ \\/\\ \\/\\ \\/\\ \\  __                ",
+            "\\ \\ `\\\\ \\ \\ \\ \\ \\/\\_\\    ___ ___    ",
+            " \\ \\ , ` \\ \\ \\ \\ \\/\\ \\ /' __` __`\\  ",
+            "  \\ \\ \\`\\ \\ \\ \\_/ \\ \\ \\/\\ \\/\\ \\/\\ \\ ",
+            "   \\ \\_\\ \\_\\ `\\___/\\ \\_\\ \\_\\ \\_\\ \\_\\",
+            "    \\/_/\\/_/`\\/__/  \\/_/\\/_/\\/_/\\/_/",
+          }, "\n"),
+        },
+      },
     },
-    keys = {
-      -- { ":", "<cmd>Telescope cmdline<cr>", desc = "Cmdline" },
-    },
-    config = function(_, opts)
-      require("telescope").setup(opts)
-      require("telescope").load_extension "cmdline"
-    end,
   },
-  -- customize alpha options
-  {
-    "goolord/alpha-nvim",
-    opts = function(_, opts)
-      -- customize the dashboard header
-      opts.section.header.val = {
-        " ______           __                   ",
-        "/\\  _  \\         /\\ \\__                ",
-        "\\ \\ \\L\\ \\    ____\\ \\ ,_\\  _ __   ___   ",
-        " \\ \\  __ \\  /',__\\\\ \\ \\/ /\\`'__\\/ __`\\ ",
-        "  \\ \\ \\/\\ \\/\\__, `\\\\ \\ \\_\\ \\ \\//\\ \\L\\ \\",
-        "   \\ \\_\\ \\_\\/\\____/ \\ \\__\\\\ \\_\\\\ \\____/",
-        "    \\/_/\\/_/\\/___/   \\/__/ \\/_/ \\/___/ ",
-        " ",
-        " __  __  __  __                     ",
-        "/\\ \\/\\ \\/\\ \\/\\ \\  __                ",
-        "\\ \\ `\\\\ \\ \\ \\ \\ \\/\\_\\    ___ ___    ",
-        " \\ \\ , ` \\ \\ \\ \\ \\/\\ \\ /' __` __`\\  ",
-        "  \\ \\ \\`\\ \\ \\ \\_/ \\ \\ \\/\\ \\/\\ \\/\\ \\ ",
-        "   \\ \\_\\ \\_\\ `\\___/\\ \\_\\ \\_\\ \\_\\ \\_\\",
-        "    \\/_/\\/_/`\\/__/  \\/_/\\/_/\\/_/\\/_/",
-      }
-      return opts
-    end,
-  },
+
+  -- You can disable default plugins as follows:
+  { "max397574/better-escape.nvim", enabled = false },
 
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
@@ -146,20 +133,6 @@ return {
     },
   },
   {
-    "icebreaker/gustav.vim",
-    ft = "markdown",
-    keys = {
-      n = {
-        ["<leader>-"] = { ":call gustav#add()<CR>", desc = "Add GFM checkbox to item" },
-        ["<leader>="] = { ":call gustav#toggle()<CR>", desc = "Toggle GFM checkbox status" },
-      },
-    },
-  },
-  {
-    "mfussenegger/nvim-dap-python",
-    ft = "python",
-  },
-  {
     "epwalsh/obsidian.nvim",
     lazy = true,
     ft = "markdown",
@@ -180,27 +153,6 @@ return {
           name = "OSE - Marches du Nord",
           path = "~/Ludothèque/TTRPGs/campaigns/OSE-marches-du-nord",
         },
-      },
-    },
-  },
-  {
-    "folke/zen-mode.nvim",
-    lazy = true,
-    dependencies = {
-      "folke/twilight.nvim",
-    },
-    keys = {
-      -- Zen Mode
-      { "<leader>z", ":ZenMode<cr>", desc = "Toggle Zen Mode" },
-    },
-    opts = {},
-  },
-  {
-    "folke/twilight.nvim",
-    opts = {},
-    keys = {
-      n = {
-        ["<leader>T"] = { ":Twilight<CR>", desc = "Toggle Twilight HL" },
       },
     },
   },

@@ -17,14 +17,14 @@ return {
       init = { -- this table overrides highlights in all themes
         -- Normal = { bg = "#000000" },
       },
-      astrotheme = { -- a table of overrides/changes when applying the astrotheme theme
+      astrodark = { -- a table of overrides/changes when applying the astrotheme theme
         -- Normal = { bg = "#000000" },
       },
       ["gruvbox-material"] = {
         -- Override neo-tree highlights
         NeoTreeDirectoryIcon = { fg = "#b0b846" },
-        NeoTreeFileIcon = { fg = "#80aa9e"}
-      }
+        NeoTreeFileIcon = { fg = "#80aa9e" },
+      },
     },
     -- Icons can be configured throughout the interface
     icons = {
