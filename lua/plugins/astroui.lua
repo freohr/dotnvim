@@ -1,5 +1,3 @@
--- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- AstroUI provides the basis for configuring the AstroNvim User Interface
 -- Configuration documentation can be found with `:h astroui`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
@@ -19,11 +17,6 @@ return {
       },
       astrodark = { -- a table of overrides/changes when applying the astrotheme theme
         -- Normal = { bg = "#000000" },
-      },
-      ["gruvbox-material"] = {
-        -- Override neo-tree highlights
-        NeoTreeDirectoryIcon = { fg = "#b0b846" },
-        NeoTreeFileIcon = { fg = "#80aa9e" },
       },
     },
     -- Icons can be configured throughout the interface

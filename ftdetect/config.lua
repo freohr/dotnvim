@@ -6,7 +6,7 @@ vim.filetype.add {
   pattern = {
     [".*/waybar/config"] = "jsonc",
     [".*/mako/config"] = "dosini",
-    [".*/kitty/*.conf"] = "bash",
+    [".*/kitty/*.conf"] = "kitty",
     [".*/hypr/.*%.conf"] = "hyprlang",
   },
 }
