@@ -1,6 +1,7 @@
 -- You can also add or configure plugins by creating files in this `plugins/` folder
 -- PLEASE REMOVE THE EXAMPLES YOU HAVE NO INTEREST IN BEFORE ENABLING THIS FILE
 -- Here are some examples:
+--
 
 ---@type LazySpec
 return {
@@ -42,9 +43,6 @@ return {
     },
   },
 
-  -- You can disable default plugins as follows:
-  { "max397574/better-escape.nvim", enabled = false },
-
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
     "L3MON4D3/LuaSnip",
@@ -55,7 +53,6 @@ return {
       luasnip.filetype_extend("javascript", { "javascriptreact" })
     end,
   },
-
   {
     "windwp/nvim-autopairs",
     config = function(plugin, opts)
@@ -156,7 +153,7 @@ return {
   },
   {
     "f3fora/nvim-texlabconfig",
-    config = function() require("texlabconfig").setup() end,
+    opts = {},
     ft = { "tex", "bib" }, -- Lazy-load on filetype
     build = "go build",
     -- build = 'go build -o ~/.bin/' if e.g. ~/.bin/ is in $PATH
@@ -168,7 +165,6 @@ return {
   },
   {
     "andrewferrier/wrapping.nvim",
-    config = function() require("wrapping").setup {} end,
   },
   {
     "Fymyte/rasi.vim",
